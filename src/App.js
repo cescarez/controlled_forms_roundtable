@@ -14,7 +14,7 @@ import "./styles.css";
 
 // ADD BONUSES
 
-export default function App() {
+function App() {
 
   const [users, setUsers] = useState([]);
 
@@ -30,4 +30,6 @@ export default function App() {
       <Results />
     </div>
   );
-}
+};
+
+export default App;
