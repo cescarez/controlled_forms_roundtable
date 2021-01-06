@@ -19,8 +19,12 @@ const Form = (props) => {
   }
 
   const validatePassword = () => {
-    return user.password === user.confirm_password
+    console.log(user.password);
+    console.log(user.confirmPassword);
+
+    return (user.password === user.confirmPassword);
   }
+
 
   return (
     <form onSubmit={(event) => props.onSubmitCallback(event, user)}>
@@ -39,11 +43,11 @@ const Form = (props) => {
       </div>
       <div className="form-group">
         <label htmlFor="password">Password</label>
-        <input name="password" type="text" onChange={onInputChange} />
+        <input name="password" type="password" onChange={onInputChange} />
       </div>
       <div className="form-group">
         <label htmlFor="confirmPassword">Confirm Password</label>
-        <input name="confirmPassword" type="text" onChange={onInputChange} className={validatePassword} />
+        <input name="confirmPassword" type="password" onChange={onInputChange} className={validatePassword() ? "valid" : "invalid"} />
       </div>
       <input type="submit" value="Submit" />
     </form>

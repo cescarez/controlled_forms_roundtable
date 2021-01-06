@@ -1,7 +1,7 @@
 .valid {
-  color: green;
+  background-color: lightgreen;
 }
 
 .invalid {
-  color: red;
+  background-color: red;
 }
