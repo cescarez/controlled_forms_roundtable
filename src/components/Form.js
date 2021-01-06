@@ -2,38 +2,28 @@ import React, {useState} from "react";
 import './Form.css';
 
 const Form = (props) => {
-  const [formFields, setFormFields] = useState({
+  const [user, setUser] = useState({
     firstName: '',
     lastName: '',
     email: '',
     password: '',
+    confirmPassword: ''
   });
 
   const onInputChange = (event) => {
-    const newFormFields = {...formFields};
+    const newUser = {...user};
     const variableName = event.target.name;
     const variableValue = event.target.value;
-    newFormFields[variableName] = variableValue;
-    setFormFields(newFormFields);
-  }
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    props.addUserCallback(formFields);
-    setFormFields({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-    });
+    newUser[variableName] = variableValue;
+    setUser(newUser);
   }
 
   const validatePassword = () => {
-    return formFields.password
+    return user.password === user.confirm_password
   }
 
   return (
-    <form>
+    <form onSubmit={(event) => props.onSubmitCallback(event, user)}>
       <div className="form-group">
         <label htmlFor="firstName">First Name</label>
         <input name="firstName" type="text" onChange={onInputChange} />
@@ -55,7 +45,7 @@ const Form = (props) => {
         <label htmlFor="confirmPassword">Confirm Password</label>
         <input name="confirmPassword" type="text" onChange={onInputChange} className={validatePassword} />
       </div>
-      <input type="submit" value="Submit" onChange={onInputChange} onClick={onSubmit} />
+      <input type="submit" value="Submit" />
     </form>
   );
 };

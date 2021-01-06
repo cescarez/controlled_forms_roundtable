@@ -18,15 +18,15 @@ function App() {
 
   const [users, setUsers] = useState([]);
 
-  const addUser = (newUser) => {
-    const newUsers = [...users, newUser];
-    //create new user?
+  const addUser = (event, user) => {
+    event.preventDefault();
+    const newUsers = [...users, user];
     setUsers(newUsers);
   }
 
   return (
     <div className="App">
-      <Form addUserCallback={addUser} />
+      <Form onSubmitCallback={addUser} />
       <Results />
     </div>
   );
